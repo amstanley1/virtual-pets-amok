@@ -10,7 +10,7 @@ public class OrganicDogTest {
 	
 	@Before
 	public void setup() {
-		organicDog = new OrganicDog("","",8,4,7,5);
+		organicDog = new OrganicDog("","",8,8,8,4,7,5);
 	}
 	
 	@Test
