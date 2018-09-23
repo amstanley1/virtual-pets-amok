@@ -2,7 +2,7 @@ package virtualpetsamok;
 
 public interface Robotic {
 	
-	void oil();
+	int getOilLevel();
 	
-	void maintain();
+	void oil();
 }

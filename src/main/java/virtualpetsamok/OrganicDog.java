@@ -1,6 +1,7 @@
 package virtualpetsamok;
 
-public class OrganicDog extends Dog {
+public class OrganicDog extends Dog implements Organic {
+	private int cageWasteLevel;
 	private int hungerLevel;
 	private int sleepinessLevel;
 	private int boredomLevel;
@@ -9,29 +10,33 @@ public class OrganicDog extends Dog {
 	
 	//Getters
 	public boolean getIsAsleep() {
-		return this.isAsleep;
+		return isAsleep;
 	}
 
 	public int getHungerLevel() {
-		return this.hungerLevel;
+		return hungerLevel;
 	}
 
 	public int getSleepinessLevel() {
-		return this.sleepinessLevel;
+		return sleepinessLevel;
 	}
 
 	public int getBoredomLevel() {
-		return this.boredomLevel;
+		return boredomLevel;
 	}
 
 	public int getThirstLevel() {
-		return this.thirstLevel;
+		return thirstLevel;
+	}
+	
+	public int getCageWasteLevel() {
+		return cageWasteLevel;
 	}
 
 	
-	public OrganicDog(String name, String description, int hungerLevel, int thirstLevel, int sleepinessLevel,
+	public OrganicDog(String name, String description, int healthLevel, int happinessLevel, int hungerLevel, int thirstLevel, int sleepinessLevel,
 			int boredomLevel) {
-		super(name, description);
+		super(name, description, healthLevel, happinessLevel);
 		this.hungerLevel = hungerLevel;
 		this.sleepinessLevel = sleepinessLevel;
 		this.boredomLevel = boredomLevel;
@@ -47,12 +52,32 @@ public class OrganicDog extends Dog {
 				} else {
 					this.hungerLevel = this.hungerLevel - 5;
 				}
+				if (this.happinessLevel < 8) {
+					this.happinessLevel = 10;
+				} else {
+					this.happinessLevel += 3;
+				}
+				if (this.healthLevel < 8) {
+					this.happinessLevel = 10;
+				} else {
+					this.healthLevel += 3;
+				}
 				break;
 			case 2:
 				if (this.hungerLevel < 3) {
 					this.hungerLevel = 0;
 				} else {
 					this.hungerLevel = this.hungerLevel - 3;
+				}
+				if (this.happinessLevel < 9) {
+					this.happinessLevel = 10;
+				} else {
+					this.happinessLevel += 2;
+				}
+				if (this.healthLevel < 8) {
+					this.happinessLevel = 10;
+				} else {
+					this.healthLevel += 3;
 				}
 				break;
 			case 3:
@@ -61,13 +86,37 @@ public class OrganicDog extends Dog {
 				} else {
 					this.hungerLevel -= 1;
 				}
+				if (this.happinessLevel < 10) {
+					this.happinessLevel = 10;
+				} else {
+					this.happinessLevel += 1;
+				}
+				if (this.healthLevel < 8) {
+					this.happinessLevel = 10;
+				} else {
+					this.healthLevel += 3;
+				}
 				break;
 			}
 		}
 
 		// Give pet water
 		public void water() {
-			this.thirstLevel -= 4;
+			if (thirstLevel < 3) {
+				thirstLevel = 0;
+			} else {
+				thirstLevel -= 3;
+			}
+			if (happinessLevel > 8) {
+				happinessLevel = 10;
+			} else {
+				this.happinessLevel += 2;
+			}
+			if (healthLevel > 8) {
+				healthLevel = 10;
+			} else {
+				this.healthLevel += 2;
+			}
 		}
 
 		// Play with pet, lowers boredom level
@@ -76,6 +125,11 @@ public class OrganicDog extends Dog {
 				this.boredomLevel = 0;
 			} else {
 				this.boredomLevel -= 3;
+			}
+			if (this.happinessLevel < 8) {
+				this.happinessLevel = 10;
+			} else {
+				this.happinessLevel += 3;
 			}
 			if (this.sleepinessLevel > 8) {
 				this.sleepinessLevel = 10;
@@ -95,14 +149,30 @@ public class OrganicDog extends Dog {
 		public void wake() {
 			this.isAsleep = false;
 		}
+		
+		public void cleanCage() {
+			cageWasteLevel = 0;
+		}
 
 		@Override
 		public void tick() {
 			if (this.hungerLevel < 10) {
 				this.hungerLevel++;
 			}
+			if (this.hungerLevel > 6) {
+				this.happinessLevel--;
+			}
+			if (this.hungerLevel > 8) {
+				this.healthLevel--;
+			}
 			if (this.thirstLevel < 10) {
 				this.thirstLevel++;
+			}
+			if (this.thirstLevel > 6) {
+				this.happinessLevel--;
+			}
+			if (this.thirstLevel > 9) {
+				this.healthLevel--;
 			}
 			if (this.boredomLevel < 10) {
 				this.boredomLevel++;
@@ -111,7 +181,18 @@ public class OrganicDog extends Dog {
 			if (this.sleepinessLevel > 8) {
 				this.sleep();
 			}
-			
+			cageWasteLevel++;
+			if (cageWasteLevel > 6) {
+				this.happinessLevel--;
+			}
+			if (this.cageWasteLevel > 9) {
+				this.healthLevel--;
+			}
+		}
+
+		public void walk() {
+			boredomLevel = 0;
+			sleepinessLevel += 2;
 		}
 		
 		

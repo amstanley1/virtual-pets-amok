@@ -35,8 +35,8 @@ public class VirtualPetShelterTest {
 
 	@Test
 	public void shouldBeAbleToAddPetsToVirtualPetShelter() {
-		VirtualPet organicCat = new OrganicCat("Crookshanks", "a organic cat", 5, 5, 5, 5);
-		VirtualPet roboticDog = new RoboticDog("Spot 2.0", "a robotic dog", 4, 4);
+		VirtualPet organicCat = new OrganicCat("Crookshanks", "a organic cat", 8, 8, 5, 5, 5, 5);
+		VirtualPet roboticDog = new RoboticDog("Spot 2.0", "a robotic dog", 8, 4, 4);
 		petShelter.addPet(organicCat);
 		petShelter.addPet(roboticDog);
 		boolean containsOrganicCat = false;
@@ -55,8 +55,8 @@ public class VirtualPetShelterTest {
 
 	@Test
 	public void shouldBeAbleToRemovePet() {
-		VirtualPet organicCat = new OrganicCat("Crookshanks", "a organic cat", 5, 5, 5, 5);
-		VirtualPet roboticDog = new RoboticDog("Spot 2.0", "a robotic dog", 4, 4);
+		VirtualPet organicCat = new OrganicCat("Crookshanks", "a organic cat", 8, 8, 5, 5, 5, 5);
+		VirtualPet roboticDog = new RoboticDog("Spot 2.0", "a robotic dog",8, 4, 4);
 		petShelter.addPet(organicCat);
 		petShelter.addPet(roboticDog);
 		petShelter.removePet("Crookshanks");
@@ -68,100 +68,211 @@ public class VirtualPetShelterTest {
 		}
 		assertFalse(containsOrganicCat);
 	}
-/*
+	
+
 	@Test
 	public void shouldBeAbleToGetPet() {
-		petShelter.addPet("Horace", "A hippo", 5, 4, 6, 7);
-		petShelter.addPet("Helga", "A horse", 4, 5, 3, 8);
-		VirtualPet helga = petShelter.getPet("Helga");
+		VirtualPet organicCat = new OrganicCat("Crookshanks", "a organic cat", 8, 8, 5, 5, 5, 5);
+		VirtualPet roboticDog = new RoboticDog("Spot 2.0", "a robotic dog", 8, 4, 4);
+		petShelter.addPet(organicCat);
+		petShelter.addPet(roboticDog);
+		VirtualPet crookshanks = petShelter.getPet("Crookshanks");
 		boolean containsPet = false;
-		assertTrue(helga.getName().equals("Helga"));
+		assertTrue(crookshanks.getName().equals("Crookshanks"));
 	}
 
 	@Test
-	public void shouldBeAbleToFeedAllPets() {
-		petShelter.addPet("Horace", "A hippo", 5, 4, 6, 7);
-		petShelter.addPet("Helga", "A horse", 4, 5, 3, 8);
-		int horaceHungerLevelBefore = petShelter.getPet("Horace").getHungerLevel();
-		int helgaHungerLevelBefore = petShelter.getPet("Helga").getHungerLevel();
+	public void shouldBeAbleToFeedAllOrganicPets() {
+		VirtualPet organicCat = new OrganicCat("Crookshanks", "a organic cat", 8, 8, 5, 5, 5, 5);
+		VirtualPet roboticDog = new RoboticDog("Spot 2.0", "a robotic dog", 8, 4, 4);
+		VirtualPet organicDog = new OrganicDog("Bob", "a organic dog", 8, 8, 6, 6, 6, 6);
+		petShelter.addPet(organicCat);
+		petShelter.addPet(roboticDog);
+		petShelter.addPet(organicDog);
+		int bobHungerLevelBefore = petShelter.getPetHungerLevel(petShelter.getPet("Bob"));
+		int crookshanksHungerLevelBefore = petShelter.getPetHungerLevel(petShelter.getPet("Crookshanks"));
 		petShelter.feedAllPets(2);
-		int horaceHungerLevelAfter = petShelter.getPet("Horace").getHungerLevel();
-		int helgaHungerLevelAfter = petShelter.getPet("Helga").getHungerLevel();
-		assertTrue(helgaHungerLevelAfter == helgaHungerLevelBefore - 3);
-		assertTrue(horaceHungerLevelAfter == horaceHungerLevelBefore - 3);
+		int bobHungerLevelAfter = petShelter.getPetHungerLevel(petShelter.getPet("Bob"));
+		int crookshanksHungerLevelAfter = petShelter.getPetHungerLevel(petShelter.getPet("Crookshanks"));
+		assertTrue(bobHungerLevelAfter == bobHungerLevelBefore - 3);
+		assertTrue(crookshanksHungerLevelAfter == crookshanksHungerLevelBefore - 3);
 	}
 
 	@Test
-	public void shouldBeAbleToWaterAllPets() {
-		petShelter.addPet("Horace", "A hippo", 5, 4, 6, 7);
-		petShelter.addPet("Helga", "A horse", 4, 5, 3, 8);
-		int horaceThirstLevelBefore = petShelter.getPet("Horace").getThirstLevel();
-		int helgaThirstLevelBefore = petShelter.getPet("Helga").getThirstLevel();
+	public void shouldBeAbleToWaterAllOrganicPets() {
+		VirtualPet organicCat = new OrganicCat("Crookshanks", "a organic cat", 8, 8, 5, 5, 5, 5);
+		VirtualPet roboticDog = new RoboticDog("Spot 2.0", "a robotic dog", 8, 4, 4);
+		VirtualPet organicDog = new OrganicDog("Bob", "a organic dog", 8, 8, 6, 6, 6, 6);
+		petShelter.addPet(organicCat);
+		petShelter.addPet(roboticDog);
+		petShelter.addPet(organicDog);
+		int bobThirstLevelBefore = petShelter.getPetThirstLevel(petShelter.getPet("Bob"));
+		int crookshanksThirstLevelBefore = petShelter.getPetThirstLevel(petShelter.getPet("Crookshanks"));
 		petShelter.waterAllPets();
-		int horaceThirstLevelAfter = petShelter.getPet("Horace").getThirstLevel();
-		int helgaThirstLevelAfter = petShelter.getPet("Helga").getThirstLevel();
-		assertTrue(helgaThirstLevelAfter == helgaThirstLevelBefore - 4);
-		assertTrue(horaceThirstLevelAfter == horaceThirstLevelBefore - 4);
+		int bobThirstLevelAfter = petShelter.getPetThirstLevel(petShelter.getPet("Bob"));
+		int crookshanksThirstLevelAfter = petShelter.getPetThirstLevel(petShelter.getPet("Crookshanks"));
+		assertTrue(bobThirstLevelAfter == bobThirstLevelBefore - 4);
+		assertTrue(crookshanksThirstLevelAfter == crookshanksThirstLevelBefore - 4);
 	}
 
 	@Test
-	public void shouldBeAbleToPlayWithPet() {
-		petShelter.addPet("Horace", "A hippo", 5, 4, 6, 7);
-		petShelter.addPet("Helga", "A horse", 4, 5, 3, 8);
-		int horaceBoredomLevelBefore = petShelter.getPet("Horace").getBoredomLevel();
-		int horaceSleepinessLevelBefore = petShelter.getPet("Horace").getSleepinessLevel();
-		petShelter.playWithPet("Horace");
-		int horaceBoredomLevelAfter = petShelter.getPet("Horace").getBoredomLevel();
-		int horaceSleepinessLevelAfter = petShelter.getPet("Horace").getSleepinessLevel();
-		assertTrue(horaceBoredomLevelAfter == horaceBoredomLevelBefore - 3);
-		assertTrue(horaceSleepinessLevelAfter == horaceSleepinessLevelBefore + 2);
+	public void shouldBeAbleToPlayWithOrganicPet() {
+		VirtualPet organicCat = new OrganicCat("Crookshanks", "a organic cat", 8, 8, 5, 5, 5, 5);
+		VirtualPet roboticDog = new RoboticDog("Spot 2.0", "a robotic dog", 8, 4, 4);
+		VirtualPet organicDog = new OrganicDog("Bob", "a organic dog", 8, 8, 6, 6, 6, 6);
+		petShelter.addPet(organicCat);
+		petShelter.addPet(roboticDog);
+		petShelter.addPet(organicDog);
+		int bobBoredomLevelBefore = petShelter.getPetBoredomLevel(petShelter.getPet("Bob"));
+		int bobSleepinessLevelBefore = petShelter.getPetSleepinessLevel(petShelter.getPet("Bob"));
+		petShelter.playWithPet("Bob");
+		int bobBoredomLevelAfter = petShelter.getPetBoredomLevel(petShelter.getPet("Bob"));
+		int bobSleepinessLevelAfter = petShelter.getPetSleepinessLevel(petShelter.getPet("Bob"));
+		assertTrue(bobBoredomLevelAfter == bobBoredomLevelBefore - 3);
+		assertTrue(bobSleepinessLevelAfter == bobSleepinessLevelBefore + 2);
 	}
-
+	
 	@Test
-	public void shouldBeAbleToMovePet() {
-		petShelter.addPet("Horace", "A hippo", 5, 4, 6, 7);
-		petShelter.addPet("Helga", "A horse", 4, 5, 3, 8);
-		int helgaBoredomLevelBefore = petShelter.getPet("Helga").getBoredomLevel();
-		petShelter.movePet("Helga");
-		int helgaBoredomLevelAfter = petShelter.getPet("Helga").getBoredomLevel();
-		assertTrue(helgaBoredomLevelAfter == helgaBoredomLevelBefore - 3);
+	public void shouldBeAbleToOilRoboticPet() {
+		VirtualPet organicCat = new OrganicCat("Crookshanks", "a organic cat", 8, 8, 5, 5, 5, 5);
+		VirtualPet roboticDog = new RoboticDog("Spot 2.0", "a robotic dog", 8, 4, 4);
+		VirtualPet organicDog = new OrganicDog("Bob", "a organic dog", 8, 8, 6, 6, 6, 6);
+		VirtualPet roboticCat = new RoboticCat("Salem", "a robotic cat", 8, 3, 3);
+		petShelter.addPet(organicCat);
+		petShelter.addPet(roboticCat);
+		petShelter.addPet(roboticDog);
+		petShelter.addPet(organicDog);
+		int spot20OilLevelBefore = petShelter.getPetOilLevel(petShelter.getPet("Spot 2.0"));
+		int salemOilLevelBefore = petShelter.getPetOilLevel(petShelter.getPet("Salem"));
+		petShelter.oilPet("Spot 2.0");
+		petShelter.oilPet("Salem");
+		int spot20OilLevelAfter = petShelter.getPetOilLevel(petShelter.getPet("Spot 2.0"));
+		int salemOilLevelAfter = petShelter.getPetOilLevel(petShelter.getPet("Salem"));
+		assertTrue(spot20OilLevelAfter == spot20OilLevelBefore + 4);
+		assertTrue(salemOilLevelAfter == salemOilLevelBefore + 4);
 	}
 
 	@Test
 	public void tickMethodShouldIncrementAndDecrementPropertiesForAllPets() {
-		petShelter.addPet("Horace", "A hippo", 5, 4, 6, 7);
-		petShelter.addPet("Helga", "A horse", 4, 5, 3, 8);
-		int horaceBoredomLevelBefore = petShelter.getPet("Horace").getBoredomLevel();
-		int horaceSleepinessLevelBefore = petShelter.getPet("Horace").getSleepinessLevel();
-		int horaceHungerLevelBefore = petShelter.getPet("Horace").getHungerLevel();
-		int horaceThirstLevelBefore = petShelter.getPet("Horace").getThirstLevel();
-		int helgaBoredomLevelBefore = petShelter.getPet("Helga").getBoredomLevel();
-		int helgaSleepinessLevelBefore = petShelter.getPet("Helga").getSleepinessLevel();
-		int helgaThirstLevelBefore = petShelter.getPet("Helga").getHungerLevel();
-		int helgaHungerLevelBefore = petShelter.getPet("Helga").getThirstLevel();
+		VirtualPet organicCat = new OrganicCat("Crookshanks", "a organic cat", 8, 8, 5, 5, 5, 5);
+		VirtualPet roboticDog = new RoboticDog("Spot 2.0", "a robotic dog", 8, 4, 4);
+		VirtualPet organicDog = new OrganicDog("Bob", "a organic dog", 8, 8, 6, 6, 6, 6);
+		VirtualPet roboticCat = new RoboticCat("Salem", "a robotic cat", 8, 3, 3);
+		petShelter.addPet(organicCat);
+		petShelter.addPet(roboticCat);
+		petShelter.addPet(roboticDog);
+		petShelter.addPet(organicDog);
+		int bobHungerLevelBefore = petShelter.getPetHungerLevel(petShelter.getPet("Bob"));
+		int crookshanksHungerLevelBefore = petShelter.getPetHungerLevel(petShelter.getPet("Crookshanks"));
+		int bobThirstLevelBefore = petShelter.getPetThirstLevel(petShelter.getPet("Bob"));
+		int crookshanksThirstLevelBefore = petShelter.getPetThirstLevel(petShelter.getPet("Crookshanks"));
+		int bobBoredomLevelBefore = petShelter.getPetBoredomLevel(petShelter.getPet("Bob"));
+		int crookshanksBoredomLevelBefore = petShelter.getPetBoredomLevel(petShelter.getPet("Crookshanks"));
+		int bobSleepinessLevelBefore = petShelter.getPetSleepinessLevel(petShelter.getPet("Bob"));
+		int crookshanksSleepinessLevelBefore = petShelter.getPetSleepinessLevel(petShelter.getPet("Crookshanks"));
+		int spot20OilLevelBefore = petShelter.getPetOilLevel(petShelter.getPet("Spot 2.0"));
+		int salemOilLevelBefore = petShelter.getPetOilLevel(petShelter.getPet("Salem"));
 		petShelter.tickAll();
-		int horaceBoredomLevelAfter = petShelter.getPet("Horace").getBoredomLevel();
-		int horaceSleepinessLevelAfter = petShelter.getPet("Horace").getSleepinessLevel();
-		int horaceHungerLevelAfter = petShelter.getPet("Horace").getHungerLevel();
-		int horaceThirstLevelAfter = petShelter.getPet("Horace").getThirstLevel();
-		int helgaBoredomLevelAfter = petShelter.getPet("Helga").getBoredomLevel();
-		int helgaSleepinessLevelAfter = petShelter.getPet("Helga").getSleepinessLevel();
-		int helgaThirstLevelAfter = petShelter.getPet("Helga").getHungerLevel();
-		int helgaHungerLevelAfter = petShelter.getPet("Helga").getThirstLevel();
-		assertTrue(horaceBoredomLevelAfter == horaceBoredomLevelBefore + 1);
-		assertTrue(horaceSleepinessLevelAfter == horaceSleepinessLevelBefore + 1);
-		assertTrue(horaceThirstLevelAfter == horaceThirstLevelBefore + 1);
-		assertTrue(horaceHungerLevelAfter == horaceHungerLevelBefore + 1);
-		assertTrue(helgaBoredomLevelAfter == helgaBoredomLevelBefore + 1);
-		assertTrue(helgaSleepinessLevelAfter == helgaSleepinessLevelBefore + 1);
-		assertTrue(helgaThirstLevelAfter == helgaThirstLevelBefore + 1);
-		assertTrue(helgaHungerLevelAfter == helgaHungerLevelBefore + 1);
+		int bobHungerLevelAfter = petShelter.getPetHungerLevel(petShelter.getPet("Bob"));
+		int crookshanksHungerLevelAfter = petShelter.getPetHungerLevel(petShelter.getPet("Crookshanks"));
+		int bobThirstLevelAfter = petShelter.getPetThirstLevel(petShelter.getPet("Bob"));
+		int crookshanksThirstLevelAfter = petShelter.getPetThirstLevel(petShelter.getPet("Crookshanks"));
+		int bobBoredomLevelAfter = petShelter.getPetBoredomLevel(petShelter.getPet("Bob"));
+		int crookshanksBoredomLevelAfter = petShelter.getPetBoredomLevel(petShelter.getPet("Crookshanks"));
+		int bobSleepinessLevelAfter = petShelter.getPetSleepinessLevel(petShelter.getPet("Bob"));
+		int crookshanksSleepinessLevelAfter = petShelter.getPetSleepinessLevel(petShelter.getPet("Crookshanks"));
+		int spot20OilLevelAfter = petShelter.getPetOilLevel(petShelter.getPet("Spot 2.0"));
+		int salemOilLevelAfter = petShelter.getPetOilLevel(petShelter.getPet("Salem"));
+		assertTrue(bobThirstLevelAfter == bobThirstLevelBefore + 1);
+		assertTrue(crookshanksThirstLevelAfter == crookshanksThirstLevelBefore + 1);
+		assertTrue(bobHungerLevelAfter == bobHungerLevelBefore + 1);
+		assertTrue(crookshanksHungerLevelAfter == crookshanksHungerLevelBefore + 1);
+		assertTrue(bobBoredomLevelAfter == bobBoredomLevelBefore + 1);
+		assertTrue(crookshanksBoredomLevelAfter == crookshanksBoredomLevelBefore + 1);
+		assertTrue(bobSleepinessLevelAfter == bobSleepinessLevelBefore + 1);
+		assertTrue(crookshanksSleepinessLevelAfter == crookshanksSleepinessLevelBefore + 1);
+		assertTrue(spot20OilLevelAfter == spot20OilLevelBefore + 1);
+		assertTrue(salemOilLevelAfter == salemOilLevelBefore + 1);
 	}
 
+	@Test
 	public void shouldBeAbleToCheckIfHasPet() {
-		petShelter.addPet("Horace", "A hippo", 5, 4, 6, 7);
-		petShelter.addPet("Helga", "A horse", 4, 5, 3, 8);
-		assertTrue(petShelter.hasPet("Horace"));
-		assertFalse(petShelter.hasPet("Holly"));
-	}*/
+		VirtualPet organicCat = new OrganicCat("Crookshanks", "a organic cat", 8, 8, 5, 5, 5, 5);
+		VirtualPet roboticDog = new RoboticDog("Spot 2.0", "a robotic dog", 8, 4, 4);
+		VirtualPet organicDog = new OrganicDog("Bob", "a organic dog", 8, 8, 6, 6, 6, 6);
+		petShelter.addPet(organicCat);
+		petShelter.addPet(roboticDog);
+		petShelter.addPet(organicDog);
+		assertTrue(petShelter.hasPet("Bob"));
+		assertTrue(petShelter.hasPet("Crookshanks"));
+		assertTrue(petShelter.hasPet("Spot 2.0"));
+		assertFalse(petShelter.hasPet("Spot"));
+	}
+	
+	@Test
+	public void shouldBeAbleToGetLitterBoxWasteLevel() {
+		VirtualPet organicCat = new OrganicCat("Crookshanks", "a organic cat", 8, 8, 5, 5, 5, 5);
+		VirtualPet roboticDog = new RoboticDog("Spot 2.0", "a robotic dog", 8, 4, 4);
+		petShelter.addPet(organicCat);
+		petShelter.addPet(roboticDog);
+		int litterBoxBefore = petShelter.getLitterBoxWasteLevel();
+		petShelter.tickAll();
+		int litterBoxAfter = petShelter.getLitterBoxWasteLevel();
+		assertTrue(litterBoxAfter == litterBoxBefore + 1);
+	}
+	
+	@Test
+	public void shouldBeAbleToCleanLitterBox() {
+		VirtualPet organicCat = new OrganicCat("Crookshanks", "a organic cat", 8, 8, 5, 5, 5, 5);
+		VirtualPet roboticDog = new RoboticDog("Spot 2.0", "a robotic dog", 8, 4, 4);
+		petShelter.addPet(organicCat);
+		petShelter.addPet(roboticDog);
+		int litterBoxBefore = petShelter.getLitterBoxWasteLevel();
+		petShelter.tickAll();
+		int litterBoxAfter = petShelter.getLitterBoxWasteLevel();
+		assertTrue(litterBoxAfter == litterBoxBefore + 1);
+		petShelter.cleanLitterBox();
+		int cleanLitterBox = petShelter.getLitterBoxWasteLevel();
+		assertTrue(cleanLitterBox == 0);
+	}
+	
+	@Test
+	public void shouldBeAbleToCleanCages() {
+		VirtualPet organicCat = new OrganicCat("Crookshanks", "a organic cat", 8, 8, 5, 5, 5, 5);
+		VirtualPet roboticDog = new RoboticDog("Spot 2.0", "a robotic dog", 8, 4, 4);
+		VirtualPet organicDog = new OrganicDog("Bob", "a organic dog", 8, 8, 6, 6, 6, 6);
+		petShelter.addPet(organicCat);
+		petShelter.addPet(roboticDog);
+		petShelter.addPet(organicDog);
+		int cageWasteLevelBefore = petShelter.getCageWasteLevel(petShelter.getPet("Bob"));
+		petShelter.tickAll();
+		int cageWasteLevelAfter = petShelter.getCageWasteLevel(petShelter.getPet("Bob"));
+		assertTrue(cageWasteLevelAfter == cageWasteLevelBefore + 1);
+		petShelter.cleanDogCage("Bob");
+		int cleanCage = petShelter.getCageWasteLevel(petShelter.getPet("Bob"));
+		assertTrue(cleanCage == 0);
+	}
+	
+	@Test
+	public void shouldBeAbleToWalkDogs() {
+		VirtualPet crookshanks = new OrganicCat("Crookshanks", "a organic cat", 8, 8, 5, 5, 5, 5);
+		VirtualPet fluffy = new OrganicDog("Fluffy", "a organic dog", 8, 8, 3, 3, 3, 3);
+		VirtualPet spot = new RoboticDog("Spot 2.0", "a robotic dog", 8, 4, 4);
+		VirtualPet bob = new OrganicDog("Bob", "another organic dog", 8, 8, 6, 6, 6, 6);
+		petShelter.addPet(crookshanks);
+		petShelter.addPet(fluffy);
+		petShelter.addPet(spot);
+		petShelter.addPet(bob);
+		int fluffySleepinessLevelBefore = petShelter.getPetSleepinessLevel(petShelter.getPet("Fluffy"));
+		int bobSleepinessLevelBefore = petShelter.getPetSleepinessLevel(petShelter.getPet("Bob"));
+		petShelter.walkAllDogs();
+		int fluffyBoredomLevelAfter = petShelter.getPetBoredomLevel(petShelter.getPet("Fluffy"));
+		int bobBoredomLevelAfter = petShelter.getPetBoredomLevel(petShelter.getPet("Bob"));
+		int fluffySleepinessLevelAfter = petShelter.getPetSleepinessLevel(petShelter.getPet("Fluffy"));
+		int bobSleepinessLevelAfter = petShelter.getPetSleepinessLevel(petShelter.getPet("Bob"));
+		assertTrue(fluffyBoredomLevelAfter == 0);
+		assertTrue(bobBoredomLevelAfter == 0);
+		assertTrue(fluffySleepinessLevelAfter == fluffySleepinessLevelBefore + 2);
+		assertTrue(bobSleepinessLevelAfter == bobSleepinessLevelBefore + 2);
+	}
 }

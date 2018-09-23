@@ -11,7 +11,7 @@ public class OrganicCatTest {
 	
 	@Before
 	public void setup() {
-		organicCat = new OrganicCat("","",8,4, 7, 5);
+		organicCat = new OrganicCat("","",8, 8, 8,4, 7, 5);
 	}
 	
 	@Test

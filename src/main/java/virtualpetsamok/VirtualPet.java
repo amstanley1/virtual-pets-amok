@@ -6,22 +6,33 @@ public abstract class VirtualPet {
 	// state of sleep, and location
 	private String name;
 	private String description;
+	protected int healthLevel;
+	protected int happinessLevel;
 	
 
 	// Getters
 	public String getName() {
-		return this.name;
+		return name;
 	}
 
 	public String getDescription() {
-		return this.description;
+		return description;
+	}
+	
+	public int getHealthLevel() {
+		return healthLevel;
+	}
+	
+	public int getHappinessLevel() {
+		return happinessLevel;
 	}
 
 	// Constructors
-	public VirtualPet(String name, String description) {
+	public VirtualPet(String name, String description, int healthLevel, int happinessLevel) {
 		this.name = name;
 		this.description = description;
-		
+		this.healthLevel = healthLevel;;
+		this.happinessLevel = happinessLevel;
 	}
 
 	// makes time pass, raises pet's needs
