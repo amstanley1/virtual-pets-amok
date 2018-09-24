@@ -14,14 +14,15 @@ public class RoboticCat extends Cat implements Robotic {
 	
 	@Override
 	public void tick() {
-		if (this.oilLevel < 10) {
-			this.oilLevel++;
+		if (oilLevel > 0) {
+			oilLevel--;
 		}
 	}
 	
 	@Override
 	public void oil() {
+		if (oilLevel < 10) {
 		oilLevel += 4;
-		
+		}
 	}	
 }

@@ -14,13 +14,15 @@ public class RoboticDog extends Dog implements Robotic {
 	
 	@Override
 	public void tick() {
-		if (this.oilLevel < 10) {
-			this.oilLevel++;
+		if (oilLevel > 0) {
+			oilLevel--;
 		}
 	}
 	
 	@Override
 	public void oil() {
-		oilLevel += 4;
+		if (oilLevel < 10) {
+			oilLevel += 4;
+			}
 	}
 }

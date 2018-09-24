@@ -111,8 +111,8 @@ public class VirtualPetShelterTest {
 		petShelter.waterAllPets();
 		int bobThirstLevelAfter = petShelter.getPetThirstLevel(petShelter.getPet("Bob"));
 		int crookshanksThirstLevelAfter = petShelter.getPetThirstLevel(petShelter.getPet("Crookshanks"));
-		assertTrue(bobThirstLevelAfter == bobThirstLevelBefore - 4);
-		assertTrue(crookshanksThirstLevelAfter == crookshanksThirstLevelBefore - 4);
+		assertTrue(bobThirstLevelAfter == bobThirstLevelBefore - 3);
+		assertTrue(crookshanksThirstLevelAfter == crookshanksThirstLevelBefore - 3);
 	}
 
 	@Test
@@ -133,7 +133,7 @@ public class VirtualPetShelterTest {
 	}
 	
 	@Test
-	public void shouldBeAbleToOilRoboticPet() {
+	public void shouldBeAbleToOilAllRoboticPets() {
 		VirtualPet organicCat = new OrganicCat("Crookshanks", "a organic cat", 8, 8, 5, 5, 5, 5);
 		VirtualPet roboticDog = new RoboticDog("Spot 2.0", "a robotic dog", 8, 4, 4);
 		VirtualPet organicDog = new OrganicDog("Bob", "a organic dog", 8, 8, 6, 6, 6, 6);
@@ -144,8 +144,7 @@ public class VirtualPetShelterTest {
 		petShelter.addPet(organicDog);
 		int spot20OilLevelBefore = petShelter.getPetOilLevel(petShelter.getPet("Spot 2.0"));
 		int salemOilLevelBefore = petShelter.getPetOilLevel(petShelter.getPet("Salem"));
-		petShelter.oilPet("Spot 2.0");
-		petShelter.oilPet("Salem");
+		petShelter.oilAllPets();
 		int spot20OilLevelAfter = petShelter.getPetOilLevel(petShelter.getPet("Spot 2.0"));
 		int salemOilLevelAfter = petShelter.getPetOilLevel(petShelter.getPet("Salem"));
 		assertTrue(spot20OilLevelAfter == spot20OilLevelBefore + 4);
