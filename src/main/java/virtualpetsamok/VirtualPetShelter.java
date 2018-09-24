@@ -158,8 +158,14 @@ public class VirtualPetShelter {
 		Collection<VirtualPet> petsCollection = pets.values();
 		for (VirtualPet pet : petsCollection) {
 			pet.tick();
-			if (pet instanceof Organic) {
-				litterBoxWasteLevel += 1;
+			if (pet instanceof OrganicCat) {
+				if (litterBoxWasteLevel < 100) {
+					litterBoxWasteLevel += 1;
+				}
+				if (litterBoxWasteLevel > 75) {
+					pet.happinessLevel -= 2;
+					pet.healthLevel -= 2;
+				}
 			}
 		}
 	}
@@ -169,10 +175,10 @@ public class VirtualPetShelter {
 	public String printStats() {
 		Collection<VirtualPet> petsCollection = pets.values();
 		String organicHeaderString = String.format("%-100s%n", "Organic Pets");
-		organicHeaderString += String.format("%-15s%-10s%-10s%-10s%-12s%-10s%n", "Name", "|Hunger", "|Thirst",
-				"|Boredom", "|Sleepiness", "|Type");
-		organicHeaderString += String.format("%-15s%-10s%-10s%-10s%-12s%-10s%n", "----------", "|---------", "|---------",
-				"|---------", "|-----------", "|---------");
+		organicHeaderString += String.format("%-15s%-10s%-10s%-10s%-12s%-10s%-10s%-10s%-20s%n", "Name", "|Hunger", "|Thirst",
+				"|Boredom", "|Sleepiness", "|Type", "|Happiness", "|Health", "|Cage Cleanliness");
+		organicHeaderString += String.format("%-15s%-10s%-10s%-10s%-12s%-10s%-10s%-10s%-20s%n", "----------", "|---------", "|---------",
+				"|---------", "|-----------", "|---------", "|---------", "|---------", "|----------------");
 		String roboticHeaderString = String.format("%-100s%n", "Robotic Pets");
 		roboticHeaderString += String.format("%-15s%-10s%-10s%n", "Name", "|Oil", "|Type");
 		roboticHeaderString += String.format("%-15s%-10s%-10s%n", "----------", "|---------", "|---------");
@@ -184,11 +190,11 @@ public class VirtualPetShelter {
 			if (pet instanceof Organic) {
 				Organic organicPet = (Organic)pet;
 				if (organicPet instanceof Cat) {
-					organicCatsStats += String.format("%-15s%-10s%-10s%-10s%-12s%-10s%n", pet.getName(), "|" + organicPet.getHungerLevel(),
-							"|" + organicPet.getThirstLevel(), "|" + organicPet.getBoredomLevel(), "|" + organicPet.getSleepinessLevel(), "|Cat");
+					organicCatsStats += String.format("%-15s%-10s%-10s%-10s%-12s%-10s%-10s%-10s%-10s%n", pet.getName(), "|" + organicPet.getHungerLevel(),
+							"|" + organicPet.getThirstLevel(), "|" + organicPet.getBoredomLevel(), "|" + organicPet.getSleepinessLevel(), "|Cat", "|" + pet.getHappinessLevel(), "|" + pet.getHealthLevel(), "|NA");
 				} else if (organicPet instanceof Dog) {
-					organicDogsStats += String.format("%-15s%-10s%-10s%-10s%-12s%-10s%n", pet.getName(), "|" + organicPet.getHungerLevel(),
-							"|" + organicPet.getThirstLevel(), "|" + organicPet.getBoredomLevel(), "|" + organicPet.getSleepinessLevel(), "|Dog");
+					organicDogsStats += String.format("%-15s%-10s%-10s%-10s%-12s%-10s%-10s%-10s%-10s%n", pet.getName(), "|" + organicPet.getHungerLevel(),
+							"|" + organicPet.getThirstLevel(), "|" + organicPet.getBoredomLevel(), "|" + organicPet.getSleepinessLevel(), "|Dog", "|" + pet.getHappinessLevel(), "|" + pet.getHealthLevel(),"|" + this.getCageWasteLevel(pet));
 				}
 			}
 			else if (pet instanceof Robotic) {

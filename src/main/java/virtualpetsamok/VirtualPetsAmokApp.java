@@ -5,8 +5,8 @@ import java.util.Scanner;
 public class VirtualPetsAmokApp {
 
 	public static void main(String[] args) {
-		VirtualPetShelter shelter = new VirtualPetShelter("New Shelter");
-		
+		//Create Shelter and add pets
+		VirtualPetShelter shelter = new VirtualPetShelter("Ashley's Shelter for Robotic and Organic Cats and Dogs");
 		
 		VirtualPet organicCat = new OrganicCat("Crookshanks", "a organic cat", 8, 8, 5, 5, 5, 5);
 		VirtualPet roboticDog = new RoboticDog("Spot 2.0", "a robotic dog", 8, 4, 4);
@@ -38,6 +38,7 @@ public class VirtualPetsAmokApp {
 	
 	
 	System.out.println("Welcome to " + shelter.getName());
+	System.out.println("Thank you for volunteering!");
 
 	String userSelection = "";
 	while (!userSelection.equals("11")) {
@@ -45,7 +46,9 @@ public class VirtualPetsAmokApp {
 		// Print all the pets stats
 		System.out.println("Here are your pets:");
 		System.out.println(shelter.printStats());
-
+		System.out.println("Communal Litterbox Waste Level: " + shelter.getLitterBoxWasteLevel());
+		System.out.println();
+		
 		// List options and ask user to select one
 		System.out.println("1. Take in a new pet");
 		System.out.println("2. Adopt out a pet");
@@ -141,8 +144,26 @@ public class VirtualPetsAmokApp {
 		System.out.println("You oiled all the organic pets.");
 		System.out.println("Press enter to continue");
 		input.nextLine();
+	} else if (userSelection.equals("8")) {
+		System.out.println("Enter the name of the dog whose cage you'd like to clean.");
+		String petName = input.nextLine();
+		if (shelter.hasPet(petName)) {
+			if (shelter.getPet(petName) instanceof OrganicDog) {
+			shelter.cleanDogCage(petName);
+			System.out.println("You cleaned " + petName + "'s cage. " + petName
+					+ " is happier and healthier now.");
+			} else {
+				System.out.println("That pet does not have a cage, please choose an organic dog.");
+			}
+		} else {
+			System.out.println("That pet is not in the shelter.");
+		}
+		System.out.println("Press enter to continue");
+		input.nextLine();
+	} else if (userSelection.equals("9")) {
+		shelter.cleanLitterBox();
+		System.out.println("You have cleaned the sheleter litterbox. The cats will be happier and healthier now.");
 	}
-		
 		// call tick method to pass time in the game
 		shelter.tickAll();
 		
