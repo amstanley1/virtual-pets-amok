@@ -162,7 +162,7 @@ public class VirtualPetsAmokApp {
 		input.nextLine();
 	} else if (userSelection.equals("9")) {
 		shelter.cleanLitterBox();
-		System.out.println("You have cleaned the sheleter litterbox. The cats will be happier and healthier now.");
+		System.out.println("You have cleaned the shelter litterbox. The cats will be happier and healthier now.");
 	}
 		// call tick method to pass time in the game
 		shelter.tickAll();
