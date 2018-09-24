@@ -24,6 +24,10 @@ public class VirtualPetShelter {
 		return pets.get(name);
 	}
 	
+	public String getPetName(VirtualPet pet) {
+		return pet.getName();
+	}
+	
 	public int getPetHungerLevel(VirtualPet pet) {
 		if (pet instanceof Organic) {
 			return ((Organic) pet).getHungerLevel();
@@ -116,11 +120,13 @@ public class VirtualPetShelter {
 		}
 	}
 	
-	// Oil specific pet
-		public void oilPet(String name) {
-			VirtualPet pet = this.getPet(name);
-			if(pet instanceof Robotic) {
-				((Robotic)pet).oil();
+	// Oil all robotic pet
+		public void oilAllPets() {
+			Collection<VirtualPet> petsCollection = pets.values();
+			for (VirtualPet pet : petsCollection) {
+				if(pet instanceof Robotic) {
+					((Robotic)pet).oil();
+				}
 			}
 		}
 		
@@ -158,33 +164,51 @@ public class VirtualPetShelter {
 		}
 	}
 	
-/*
+
 	// Return stats for each pet as a formatted String
 	public String printStats() {
-		String statsString = String.format("%-10s%-10s%-10s%-10s%-12s%-10s%-10s%n", "Name", "|Hunger", "|Thirst",
-				"|Boredom", "|Sleepiness", "|Location", "|State");
-		statsString += String.format("%-10s%-10s%-10s%-10s%-12s%-10s%-10s%n", "----------", "|---------", "|---------",
-				"|---------", "|-----------", "|---------", "|---------");
-
 		Collection<VirtualPet> petsCollection = pets.values();
+		String organicHeaderString = String.format("%-100s%n", "Organic Pets");
+		organicHeaderString += String.format("%-15s%-10s%-10s%-10s%-12s%-10s%n", "Name", "|Hunger", "|Thirst",
+				"|Boredom", "|Sleepiness", "|Type");
+		organicHeaderString += String.format("%-15s%-10s%-10s%-10s%-12s%-10s%n", "----------", "|---------", "|---------",
+				"|---------", "|-----------", "|---------");
+		String roboticHeaderString = String.format("%-100s%n", "Robotic Pets");
+		roboticHeaderString += String.format("%-15s%-10s%-10s%n", "Name", "|Oil", "|Type");
+		roboticHeaderString += String.format("%-15s%-10s%-10s%n", "----------", "|---------", "|---------");
+		String organicCatsStats = "";
+		String organicDogsStats = "";
+		String roboticCatsStats = "";
+		String roboticDogsStats = "";
 		for (VirtualPet pet : petsCollection) {
-			statsString += String.format("%-10s%-10s%-10s%-10s%-12s", pet.getName(), "|" + pet.getHungerLevel(),
-					"|" + pet.getThirstLevel(), "|" + pet.getBoredomLevel(), "|" + pet.getSleepinessLevel());
-
-			if (pet.getIsInPasture()) {
-				statsString += String.format("%-10s", "|Pasture");
-			} else {
-				statsString += String.format("%-10s", "|Barn");
+			if (pet instanceof Organic) {
+				Organic organicPet = (Organic)pet;
+				if (organicPet instanceof Cat) {
+					organicCatsStats += String.format("%-15s%-10s%-10s%-10s%-12s%-10s%n", pet.getName(), "|" + organicPet.getHungerLevel(),
+							"|" + organicPet.getThirstLevel(), "|" + organicPet.getBoredomLevel(), "|" + organicPet.getSleepinessLevel(), "|Cat");
+				} else if (organicPet instanceof Dog) {
+					organicDogsStats += String.format("%-15s%-10s%-10s%-10s%-12s%-10s%n", pet.getName(), "|" + organicPet.getHungerLevel(),
+							"|" + organicPet.getThirstLevel(), "|" + organicPet.getBoredomLevel(), "|" + organicPet.getSleepinessLevel(), "|Dog");
+				}
 			}
-			if (pet.getIsAsleep()) {
+			else if (pet instanceof Robotic) {
+				Robotic roboticPet = (Robotic)pet;
+				if (roboticPet instanceof Cat) {
+					roboticCatsStats += String.format("%-15s%-10s%-10s%n", pet.getName(), "|" + roboticPet.getOilLevel(), "|Cat");
+				} else if (roboticPet instanceof Dog) {
+					roboticDogsStats += String.format("%-15s%-10s%-10s%n", pet.getName(), "|" + roboticPet.getOilLevel(), "|Dog");
+				}
+			/*if (pet.getIsAsleep()) {
 				statsString += String.format("%-10s%n", "|Asleep");
 			} else {
 				statsString += String.format("%-10s%n", "|Awake");
-			}
+			}*/
 		}
-		return statsString;
+		} 
+		
+		return organicHeaderString + organicCatsStats + organicDogsStats + String.format("%n") + roboticHeaderString + roboticCatsStats + roboticDogsStats;
 	}
-*/
+
 	// Return name and description for each pet as formatted String
 	public String printNamesAndDescriptions() {
 		Collection<VirtualPet> petsCollection = pets.values();

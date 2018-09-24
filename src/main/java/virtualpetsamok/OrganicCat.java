@@ -41,35 +41,79 @@ public class OrganicCat extends Cat implements Organic {
 	@Override
 	// Feed Pet, lowers hunger level depending on user selected food number
 		public void feed(int userSelectedFood) {
-			switch (userSelectedFood) {
-			case 1:
-				if (this.hungerLevel < 5) {
-					this.hungerLevel = 0;
-				} else {
-					this.hungerLevel = this.hungerLevel - 5;
-				}
-				break;
-			case 2:
-				if (this.hungerLevel < 3) {
-					this.hungerLevel = 0;
-				} else {
-					this.hungerLevel = this.hungerLevel - 3;
-				}
-				break;
-			case 3:
-				if (this.hungerLevel < 1) {
-					this.hungerLevel = 0;
-				} else {
-					this.hungerLevel -= 1;
-				}
-				break;
+		switch (userSelectedFood) {
+		case 1:
+			if (this.hungerLevel < 5) {
+				this.hungerLevel = 0;
+			} else {
+				this.hungerLevel = this.hungerLevel - 5;
 			}
+			if (this.happinessLevel < 8) {
+				this.happinessLevel = 10;
+			} else {
+				this.happinessLevel += 3;
+			}
+			if (this.healthLevel < 8) {
+				this.happinessLevel = 10;
+			} else {
+				this.healthLevel += 3;
+			}
+			break;
+		case 2:
+			if (this.hungerLevel < 3) {
+				this.hungerLevel = 0;
+			} else {
+				this.hungerLevel = this.hungerLevel - 3;
+			}
+			if (this.happinessLevel < 9) {
+				this.happinessLevel = 10;
+			} else {
+				this.happinessLevel += 2;
+			}
+			if (this.healthLevel < 8) {
+				this.happinessLevel = 10;
+			} else {
+				this.healthLevel += 3;
+			}
+			break;
+		case 3:
+			if (this.hungerLevel < 1) {
+				this.hungerLevel = 0;
+			} else {
+				this.hungerLevel -= 1;
+			}
+			if (this.happinessLevel < 10) {
+				this.happinessLevel = 10;
+			} else {
+				this.happinessLevel += 1;
+			}
+			if (this.healthLevel < 8) {
+				this.happinessLevel = 10;
+			} else {
+				this.healthLevel += 3;
+			}
+			break;
+		}
 		}
 
 		@Override
 		// Give pet water
 		public void water() {
-			this.thirstLevel -= 4;
+			if (thirstLevel < 3) {
+				thirstLevel = 0;
+			} else {
+				thirstLevel -= 3;
+			}
+			if (happinessLevel > 8) {
+				happinessLevel = 10;
+			} else {
+				this.happinessLevel += 2;
+			}
+			if (healthLevel > 8) {
+				healthLevel = 10;
+			} else {
+				this.healthLevel += 2;
+			}
 		}
 
 		@Override
@@ -79,6 +123,11 @@ public class OrganicCat extends Cat implements Organic {
 				this.boredomLevel = 0;
 			} else {
 				this.boredomLevel -= 3;
+			}
+			if (this.happinessLevel < 8) {
+				this.happinessLevel = 10;
+			} else {
+				this.happinessLevel += 3;
 			}
 			if (this.sleepinessLevel > 8) {
 				this.sleepinessLevel = 10;

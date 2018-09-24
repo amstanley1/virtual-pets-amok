@@ -2,8 +2,7 @@ package virtualpetsamok;
 
 public abstract class VirtualPet {
 
-	// Fields for name, description, hunger level, sleepiness level, boredom level,
-	// state of sleep, and location
+	// Fields for name, description
 	private String name;
 	private String description;
 	protected int healthLevel;
