@@ -7,12 +7,12 @@ import org.junit.Test;
 
 public class OrganicDogTest {
 	OrganicDog organicDog;
-	
+
 	@Before
 	public void setup() {
-		organicDog = new OrganicDog("","",8,8,8,4,7,5);
+		organicDog = new OrganicDog("", "", 8, 8, 8, 4, 7, 5);
 	}
-	
+
 	@Test
 	public void shouldBeAbleToGetHungerLevel() {
 		int hungerLevel = organicDog.getHungerLevel();
@@ -45,7 +45,6 @@ public class OrganicDogTest {
 		organicDog.playWith();
 		assertTrue(originalBoredomLevel - 3 == organicDog.getBoredomLevel());
 	}
-
 
 	@Test
 	public void tickMethodShouldIncrementAndDecrementProperties() {
@@ -82,6 +81,6 @@ public class OrganicDogTest {
 	public void shouldBeAbleToWaterPet() {
 		int originalThirstLevel = organicDog.getThirstLevel();
 		organicDog.water();
-		assertTrue(originalThirstLevel - 4 == organicDog.getThirstLevel());
+		assertTrue(originalThirstLevel - 3 == organicDog.getThirstLevel());
 	}
 }

@@ -7,29 +7,29 @@ import org.junit.Test;
 
 public class RoboticDogTest {
 	RoboticDog roboticDog;
-	
+
 	@Before
 	public void setup() {
-		roboticDog = new RoboticDog("","", 8, 5, 6);
+		roboticDog = new RoboticDog("", "", 8, 5, 6);
 	}
-	
+
 	@Test
-	public void shouldBeAbleToGetOilLevel() {
-		int oilLevel = roboticDog.getOilLevel();
-		assertTrue(oilLevel == 5);
+	public void shouldBeAbleToGetRustLevel() {
+		int rustLevel = roboticDog.getRustLevel();
+		assertTrue(rustLevel == 6);
 	}
 
 	@Test
 	public void shouldBeAbleToOilRoboticDog() {
-		int originalOilLevel = roboticDog.getOilLevel();
+		int originalRustLevel = roboticDog.getRustLevel();
 		roboticDog.oil();
-		assertTrue((originalOilLevel + 4) == (roboticDog.getOilLevel()));
+		assertTrue((originalRustLevel - 4) == (roboticDog.getRustLevel()));
 	}
-	
+
 	@Test
 	public void tickMethodShouldIncrementAndDecrementProperties() {
-		int originalOilLevel = roboticDog.getOilLevel();
+		int originalRustLevel = roboticDog.getRustLevel();
 		roboticDog.tick();
-		assertTrue(originalOilLevel + 1 == roboticDog.getOilLevel());	
+		assertTrue(originalRustLevel + 1 == roboticDog.getRustLevel());
 	}
 }

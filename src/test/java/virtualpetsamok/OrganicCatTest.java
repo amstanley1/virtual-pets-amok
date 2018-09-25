@@ -1,4 +1,5 @@
 package virtualpetsamok;
+
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
@@ -8,12 +9,12 @@ import virtualpetsamok.OrganicCat;
 
 public class OrganicCatTest {
 	OrganicCat organicCat;
-	
+
 	@Before
 	public void setup() {
-		organicCat = new OrganicCat("","",8, 8, 8,4, 7, 5);
+		organicCat = new OrganicCat("", "", 8, 8, 8, 4, 7, 5);
 	}
-	
+
 	@Test
 	public void shouldBeAbleToGetHungerLevel() {
 		int hungerLevel = organicCat.getHungerLevel();
@@ -46,7 +47,6 @@ public class OrganicCatTest {
 		organicCat.playWith();
 		assertTrue(originalBoredomLevel - 3 == organicCat.getBoredomLevel());
 	}
-
 
 	@Test
 	public void tickMethodShouldIncrementAndDecrementProperties() {
@@ -83,8 +83,6 @@ public class OrganicCatTest {
 	public void shouldBeAbleToWaterPet() {
 		int originalThirstLevel = organicCat.getThirstLevel();
 		organicCat.water();
-		assertTrue(originalThirstLevel - 4 == organicCat.getThirstLevel());
+		assertTrue(originalThirstLevel - 3 == organicCat.getThirstLevel());
 	}
-	
-	
 }

@@ -142,13 +142,13 @@ public class VirtualPetShelterTest {
 		petShelter.addPet(roboticCat);
 		petShelter.addPet(roboticDog);
 		petShelter.addPet(organicDog);
-		int spot20OilLevelBefore = petShelter.getPetOilLevel(petShelter.getPet("Spot 2.0"));
-		int salemOilLevelBefore = petShelter.getPetOilLevel(petShelter.getPet("Salem"));
-		petShelter.oilAllPets();
-		int spot20OilLevelAfter = petShelter.getPetOilLevel(petShelter.getPet("Spot 2.0"));
-		int salemOilLevelAfter = petShelter.getPetOilLevel(petShelter.getPet("Salem"));
-		assertTrue(spot20OilLevelAfter == spot20OilLevelBefore + 4);
-		assertTrue(salemOilLevelAfter == salemOilLevelBefore + 4);
+		int spot20RustLevelBefore = petShelter.getPetRustLevel(petShelter.getPet("Spot 2.0"));
+		int salemRustLevelBefore = petShelter.getPetRustLevel(petShelter.getPet("Salem"));
+		petShelter.oilAllRoboticPets();
+		int spot20RustLevelAfter = petShelter.getPetRustLevel(petShelter.getPet("Spot 2.0"));
+		int salemRustLevelAfter = petShelter.getPetRustLevel(petShelter.getPet("Salem"));
+		assertTrue(spot20RustLevelAfter == spot20RustLevelBefore - 4);
+		assertTrue(salemRustLevelAfter == salemRustLevelBefore - 4);
 	}
 
 	@Test
@@ -169,8 +169,8 @@ public class VirtualPetShelterTest {
 		int crookshanksBoredomLevelBefore = petShelter.getPetBoredomLevel(petShelter.getPet("Crookshanks"));
 		int bobSleepinessLevelBefore = petShelter.getPetSleepinessLevel(petShelter.getPet("Bob"));
 		int crookshanksSleepinessLevelBefore = petShelter.getPetSleepinessLevel(petShelter.getPet("Crookshanks"));
-		int spot20OilLevelBefore = petShelter.getPetOilLevel(petShelter.getPet("Spot 2.0"));
-		int salemOilLevelBefore = petShelter.getPetOilLevel(petShelter.getPet("Salem"));
+		int spot20RustLevelBefore = petShelter.getPetRustLevel(petShelter.getPet("Spot 2.0"));
+		int salemRustLevelBefore = petShelter.getPetRustLevel(petShelter.getPet("Salem"));
 		petShelter.tickAll();
 		int bobHungerLevelAfter = petShelter.getPetHungerLevel(petShelter.getPet("Bob"));
 		int crookshanksHungerLevelAfter = petShelter.getPetHungerLevel(petShelter.getPet("Crookshanks"));
@@ -180,8 +180,8 @@ public class VirtualPetShelterTest {
 		int crookshanksBoredomLevelAfter = petShelter.getPetBoredomLevel(petShelter.getPet("Crookshanks"));
 		int bobSleepinessLevelAfter = petShelter.getPetSleepinessLevel(petShelter.getPet("Bob"));
 		int crookshanksSleepinessLevelAfter = petShelter.getPetSleepinessLevel(petShelter.getPet("Crookshanks"));
-		int spot20OilLevelAfter = petShelter.getPetOilLevel(petShelter.getPet("Spot 2.0"));
-		int salemOilLevelAfter = petShelter.getPetOilLevel(petShelter.getPet("Salem"));
+		int spot20RustLevelAfter = petShelter.getPetRustLevel(petShelter.getPet("Spot 2.0"));
+		int salemRustLevelAfter = petShelter.getPetRustLevel(petShelter.getPet("Salem"));
 		assertTrue(bobThirstLevelAfter == bobThirstLevelBefore + 1);
 		assertTrue(crookshanksThirstLevelAfter == crookshanksThirstLevelBefore + 1);
 		assertTrue(bobHungerLevelAfter == bobHungerLevelBefore + 1);
@@ -190,8 +190,8 @@ public class VirtualPetShelterTest {
 		assertTrue(crookshanksBoredomLevelAfter == crookshanksBoredomLevelBefore + 1);
 		assertTrue(bobSleepinessLevelAfter == bobSleepinessLevelBefore + 1);
 		assertTrue(crookshanksSleepinessLevelAfter == crookshanksSleepinessLevelBefore + 1);
-		assertTrue(spot20OilLevelAfter == spot20OilLevelBefore + 1);
-		assertTrue(salemOilLevelAfter == salemOilLevelBefore + 1);
+		assertTrue(spot20RustLevelAfter == spot20RustLevelBefore + 1);
+		assertTrue(salemRustLevelAfter == salemRustLevelBefore + 1);
 	}
 
 	@Test
@@ -230,7 +230,7 @@ public class VirtualPetShelterTest {
 		petShelter.tickAll();
 		int litterBoxAfter = petShelter.getLitterBoxWasteLevel();
 		assertTrue(litterBoxAfter == litterBoxBefore + 1);
-		petShelter.cleanLitterBox();
+		petShelter.emptyLitterBox();
 		int cleanLitterBox = petShelter.getLitterBoxWasteLevel();
 		assertTrue(cleanLitterBox == 0);
 	}
@@ -247,7 +247,7 @@ public class VirtualPetShelterTest {
 		petShelter.tickAll();
 		int cageWasteLevelAfter = petShelter.getCageWasteLevel(petShelter.getPet("Bob"));
 		assertTrue(cageWasteLevelAfter == cageWasteLevelBefore + 1);
-		petShelter.cleanDogCage("Bob");
+		petShelter.cleanAllCages();
 		int cleanCage = petShelter.getCageWasteLevel(petShelter.getPet("Bob"));
 		assertTrue(cleanCage == 0);
 	}

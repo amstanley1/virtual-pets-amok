@@ -1,22 +1,20 @@
 package virtualpetsamok;
 
 public interface Organic {
-	
-	int getHungerLevel();
-	
-	int getThirstLevel();
-	
-	int getBoredomLevel();
-	
-	int getSleepinessLevel();
-	
-	void feed(int food);
-	
-	void water();
-	
-	void playWith();
-	
-	void sleep();
-	
-	void wake();
+
+	abstract int getHungerLevel();
+
+	abstract int getThirstLevel();
+
+	abstract int getBoredomLevel();
+
+	abstract int getSleepinessLevel();
+
+	abstract void feed(int food);
+
+	abstract void water();
+
+	abstract void sleep();
+
+	abstract void wake();
 }

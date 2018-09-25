@@ -7,30 +7,29 @@ import org.junit.Test;
 
 public class RoboticCatTest {
 	RoboticCat roboticCat;
-	
+
 	@Before
 	public void setup() {
-		roboticCat = new RoboticCat("","", 8,5, 6);
+		roboticCat = new RoboticCat("", "", 8, 5, 6);
 	}
-	
+
 	@Test
-	public void shouldBeAbleToGetOilLevel() {
-		int oilLevel = roboticCat.getOilLevel();
-		assertTrue(oilLevel == 5);
+	public void shouldBeAbleToGetRustLevel() {
+		int rustLevel = roboticCat.getRustLevel();
+		assertTrue(rustLevel == 6);
 	}
-	
-	
+
 	@Test
 	public void shouldBeAbleToOilRoboticCat() {
-		int originalOilLevel = roboticCat.getOilLevel();
+		int originalRustLevel = roboticCat.getRustLevel();
 		roboticCat.oil();
-		assertTrue((originalOilLevel + 4) == (roboticCat.getOilLevel()));
+		assertTrue((originalRustLevel - 4) == (roboticCat.getRustLevel()));
 	}
-	
+
 	@Test
 	public void tickMethodShouldIncrementAndDecrementProperties() {
-		int originalOilLevel = roboticCat.getOilLevel();
+		int originalRustLevel = roboticCat.getRustLevel();
 		roboticCat.tick();
-		assertTrue(originalOilLevel + 1 == roboticCat.getOilLevel());
+		assertTrue(originalRustLevel + 1 == roboticCat.getRustLevel());
 	}
 }
