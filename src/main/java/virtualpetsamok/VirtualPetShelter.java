@@ -145,8 +145,8 @@ public class VirtualPetShelter {
 	public void walkAllDogs() {
 		Collection<VirtualPet> petsCollection = pets.values();
 		for (VirtualPet pet : petsCollection) {
-			if (pet instanceof OrganicDog) {
-				((OrganicDog) pet).walk();
+			if (pet instanceof Dog) {
+				((Dog) pet).walk();
 			}
 		}
 	}
@@ -222,9 +222,9 @@ public class VirtualPetShelter {
 	// Return name and description for each pet as formatted String
 	public String printNamesAndDescriptions() {
 		Collection<VirtualPet> petsCollection = pets.values();
-		String petsString = String.format("%-10s%-50s%n", "Name", "Description");
+		String petsString = String.format("%-12s%-50s%n", "Name", "Description");
 		for (VirtualPet pet : petsCollection) {
-			petsString += String.format("%-10s%-50s%n", pet.getName(), "|" + pet.getDescription());
+			petsString += String.format("%-12s%-50s%n", pet.getName(), "|" + pet.getDescription());
 		}
 		return petsString;
 	}

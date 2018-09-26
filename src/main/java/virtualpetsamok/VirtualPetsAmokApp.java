@@ -8,17 +8,17 @@ public class VirtualPetsAmokApp {
 		// Create Shelter and add pets
 		VirtualPetShelter shelter = new VirtualPetShelter("Ashley's Shelter for Robotic and Organic Cats and Dogs");
 
-		VirtualPet organicCat = new OrganicCat("Crookshanks", "a organic cat", 6, 7, 4, 5, 6, 5);
+		VirtualPet organicCat = new OrganicCat("Crookshanks", "an organic cat", 6, 7, 4, 5, 6, 5);
 		VirtualPet roboticDog = new RoboticDog("Spot 2.0", "a robotic dog", 8, 4, 4);
 		VirtualPet organicDog = new OrganicDog("Bob", "a organic dog", 8, 7, 6, 4, 6, 4);
 		VirtualPet roboticCat = new RoboticCat("Salem", "a robotic cat", 6, 4, 3);
-		VirtualPet organicCat2 = new OrganicCat("Charlie", "a organic cat", 8, 7, 5, 5, 5, 5);
+		VirtualPet organicCat2 = new OrganicCat("Charlie", "an organic cat", 8, 7, 5, 5, 5, 5);
 		VirtualPet roboticDog2 = new RoboticDog("Rover", "a robotic dog", 8, 9, 4);
-		VirtualPet organicDog2 = new OrganicDog("Fluffy", "a organic dog", 5, 8, 8, 6, 7, 6);
+		VirtualPet organicDog2 = new OrganicDog("Fluffy", "an organic dog", 5, 8, 8, 6, 7, 6);
 		VirtualPet roboticCat2 = new RoboticCat("Oscar", "a robotic cat", 7, 6, 3);
-		VirtualPet organicCat3 = new OrganicCat("Tabitha", "a organic cat", 8, 8, 5, 8, 5, 9);
-		VirtualPet organicDog3 = new OrganicDog("Toto", "a organic dog", 9, 8, 6, 7, 6, 9);
-		VirtualPet organicCat4 = new OrganicCat("Tigger", "a organic cat", 8, 6, 5, 7, 5, 9);
+		VirtualPet organicCat3 = new OrganicCat("Tabitha", "an organic cat", 8, 8, 5, 8, 5, 9);
+		VirtualPet organicDog3 = new OrganicDog("Toto", "an organic dog", 9, 8, 6, 7, 6, 9);
+		VirtualPet organicCat4 = new OrganicCat("Tigger", "an organic cat", 8, 6, 5, 7, 5, 9);
 		shelter.addPet(organicCat);
 		shelter.addPet(roboticCat);
 		shelter.addPet(roboticDog);

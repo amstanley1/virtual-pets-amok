@@ -17,6 +17,13 @@ public class RoboticCat extends Cat implements Robotic {
 		if (rustLevel < 10) {
 			rustLevel++;
 		}
+		if (rustLevel > 8 && healthLevel > 0) {
+			healthLevel--;
+		}
+		if (rustLevel > 8 && happinessLevel > 0) {
+			happinessLevel--;
+		}
+
 	}
 
 	@Override
@@ -26,14 +33,24 @@ public class RoboticCat extends Cat implements Robotic {
 		} else {
 			rustLevel -= 4;
 		}
+		if (happinessLevel > 7) {
+			happinessLevel = 10;
+		} else {
+			happinessLevel += 2;
+		}
+		if (healthLevel > 7) {
+			healthLevel = 10;
+		} else {
+			healthLevel += 2;
+		}
 	}
 
 	// Play with pet, raises happiness level
 	public void playWith() {
-		if (this.happinessLevel > 7) {
-			this.happinessLevel = 10;
+		if (happinessLevel > 7) {
+			happinessLevel = 10;
 		} else {
-			this.happinessLevel += 3;
+			happinessLevel += 3;
 		}
 	}
 }

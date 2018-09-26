@@ -27,7 +27,7 @@ public class VirtualPetShelterTest {
 		Collection<VirtualPet> petsList = petShelter.getAllPets();
 		assertTrue(petsList.isEmpty());
 	}
-	
+
 	@Test
 	public void shouldBeAbleToGetName() {
 		assertTrue(petShelter.getName().equals("My Test Pet Shelter"));
@@ -56,7 +56,7 @@ public class VirtualPetShelterTest {
 	@Test
 	public void shouldBeAbleToRemovePet() {
 		VirtualPet organicCat = new OrganicCat("Crookshanks", "a organic cat", 8, 8, 5, 5, 5, 5);
-		VirtualPet roboticDog = new RoboticDog("Spot 2.0", "a robotic dog",8, 4, 4);
+		VirtualPet roboticDog = new RoboticDog("Spot 2.0", "a robotic dog", 8, 4, 4);
 		petShelter.addPet(organicCat);
 		petShelter.addPet(roboticDog);
 		petShelter.removePet("Crookshanks");
@@ -68,7 +68,6 @@ public class VirtualPetShelterTest {
 		}
 		assertFalse(containsOrganicCat);
 	}
-	
 
 	@Test
 	public void shouldBeAbleToGetPet() {
@@ -128,16 +127,16 @@ public class VirtualPetShelterTest {
 		petShelter.playWithPet("Bob");
 		int bobBoredomLevelAfter = petShelter.getPetBoredomLevel(petShelter.getPet("Bob"));
 		int bobSleepinessLevelAfter = petShelter.getPetSleepinessLevel(petShelter.getPet("Bob"));
-		assertTrue(bobBoredomLevelAfter == bobBoredomLevelBefore - 3);
+		assertTrue(bobBoredomLevelAfter == bobBoredomLevelBefore - 5);
 		assertTrue(bobSleepinessLevelAfter == bobSleepinessLevelBefore + 2);
 	}
-	
+
 	@Test
 	public void shouldBeAbleToOilAllRoboticPets() {
 		VirtualPet organicCat = new OrganicCat("Crookshanks", "a organic cat", 8, 8, 5, 5, 5, 5);
 		VirtualPet roboticDog = new RoboticDog("Spot 2.0", "a robotic dog", 8, 4, 4);
 		VirtualPet organicDog = new OrganicDog("Bob", "a organic dog", 8, 8, 6, 6, 6, 6);
-		VirtualPet roboticCat = new RoboticCat("Salem", "a robotic cat", 8, 3, 3);
+		VirtualPet roboticCat = new RoboticCat("Salem", "a robotic cat", 8, 3, 6);
 		petShelter.addPet(organicCat);
 		petShelter.addPet(roboticCat);
 		petShelter.addPet(roboticDog);
@@ -207,7 +206,7 @@ public class VirtualPetShelterTest {
 		assertTrue(petShelter.hasPet("Spot 2.0"));
 		assertFalse(petShelter.hasPet("Spot"));
 	}
-	
+
 	@Test
 	public void shouldBeAbleToGetLitterBoxWasteLevel() {
 		VirtualPet organicCat = new OrganicCat("Crookshanks", "a organic cat", 8, 8, 5, 5, 5, 5);
@@ -219,7 +218,7 @@ public class VirtualPetShelterTest {
 		int litterBoxAfter = petShelter.getLitterBoxWasteLevel();
 		assertTrue(litterBoxAfter == litterBoxBefore + 1);
 	}
-	
+
 	@Test
 	public void shouldBeAbleToCleanLitterBox() {
 		VirtualPet organicCat = new OrganicCat("Crookshanks", "a organic cat", 8, 8, 5, 5, 5, 5);
@@ -234,7 +233,7 @@ public class VirtualPetShelterTest {
 		int cleanLitterBox = petShelter.getLitterBoxWasteLevel();
 		assertTrue(cleanLitterBox == 0);
 	}
-	
+
 	@Test
 	public void shouldBeAbleToCleanCages() {
 		VirtualPet organicCat = new OrganicCat("Crookshanks", "a organic cat", 8, 8, 5, 5, 5, 5);
@@ -251,7 +250,7 @@ public class VirtualPetShelterTest {
 		int cleanCage = petShelter.getCageWasteLevel(petShelter.getPet("Bob"));
 		assertTrue(cleanCage == 0);
 	}
-	
+
 	@Test
 	public void shouldBeAbleToWalkDogs() {
 		VirtualPet crookshanks = new OrganicCat("Crookshanks", "a organic cat", 8, 8, 5, 5, 5, 5);

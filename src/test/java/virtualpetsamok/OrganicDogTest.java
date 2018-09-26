@@ -43,7 +43,7 @@ public class OrganicDogTest {
 	public void shouldBeAbleToPlayWithPet() {
 		int originalBoredomLevel = organicDog.getBoredomLevel();
 		organicDog.playWith();
-		assertTrue(originalBoredomLevel - 3 == organicDog.getBoredomLevel());
+		assertTrue(originalBoredomLevel - 5 == organicDog.getBoredomLevel());
 	}
 
 	@Test

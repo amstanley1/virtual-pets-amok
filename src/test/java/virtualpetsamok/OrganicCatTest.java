@@ -45,7 +45,7 @@ public class OrganicCatTest {
 	public void shouldBeAbleToPlayWithPet() {
 		int originalBoredomLevel = organicCat.getBoredomLevel();
 		organicCat.playWith();
-		assertTrue(originalBoredomLevel - 3 == organicCat.getBoredomLevel());
+		assertTrue(originalBoredomLevel - 5 == organicCat.getBoredomLevel());
 	}
 
 	@Test

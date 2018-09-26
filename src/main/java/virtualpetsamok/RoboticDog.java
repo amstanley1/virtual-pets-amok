@@ -17,6 +17,12 @@ public class RoboticDog extends Dog implements Robotic {
 		if (rustLevel < 10) {
 			rustLevel++;
 		}
+		if (rustLevel > 8 && healthLevel > 0) {
+			healthLevel--;
+		}
+		if (rustLevel > 8 && happinessLevel > 0) {
+			happinessLevel--;
+		}
 	}
 
 	@Override
@@ -26,23 +32,33 @@ public class RoboticDog extends Dog implements Robotic {
 		} else {
 			rustLevel -= 4;
 		}
+		if (happinessLevel > 7) {
+			happinessLevel = 10;
+		} else {
+			happinessLevel += 2;
+		}
+		if (healthLevel > 7) {
+			healthLevel = 10;
+		} else {
+			healthLevel += 2;
+		}
 	}
 
 	// Play with pet, raises happiness level
 	public void playWith() {
-		if (this.happinessLevel > 6) {
-			this.happinessLevel = 10;
+		if (happinessLevel > 6) {
+			happinessLevel = 10;
 		} else {
-			this.happinessLevel += 3;
+			happinessLevel += 3;
 		}
 	}
 
 	@Override
 	public void walk() {
-		if (this.happinessLevel > 7) {
-			this.happinessLevel = 10;
+		if (happinessLevel > 7) {
+			happinessLevel = 10;
 		} else {
-			this.happinessLevel += 2;
+			happinessLevel += 2;
 		}
 	}
 }

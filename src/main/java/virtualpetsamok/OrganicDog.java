@@ -121,10 +121,10 @@ public class OrganicDog extends Dog implements Organic {
 
 	// Play with pet, lowers boredom level
 	public void playWith() {
-		if (this.boredomLevel < 3) {
+		if (this.boredomLevel < 6) {
 			this.boredomLevel = 0;
 		} else {
-			this.boredomLevel -= 3;
+			this.boredomLevel -= 5;
 		}
 		if (this.happinessLevel < 8) {
 			this.happinessLevel = 10;
@@ -156,42 +156,45 @@ public class OrganicDog extends Dog implements Organic {
 
 	@Override
 	public void tick() {
-		if (this.hungerLevel < 10) {
-			this.hungerLevel++;
+		if (hungerLevel < 10) {
+			hungerLevel++;
 		}
-		if (this.hungerLevel > 6 && this.happinessLevel > 0) {
-			this.happinessLevel--;
+		if (hungerLevel > 6 && happinessLevel > 0) {
+			happinessLevel--;
 		}
-		if (this.hungerLevel > 8 && this.healthLevel > 0) {
-			this.healthLevel--;
+		if (hungerLevel > 8 && healthLevel > 0) {
+			healthLevel--;
 		}
-		if (this.thirstLevel < 10) {
-			this.thirstLevel++;
+		if (thirstLevel < 10) {
+			thirstLevel++;
 		}
-		if (this.thirstLevel > 6 && this.happinessLevel > 0) {
-			this.happinessLevel--;
+		if (thirstLevel > 6 && happinessLevel > 0) {
+			happinessLevel--;
 		}
-		if (this.thirstLevel > 9 && this.healthLevel > 0) {
-			this.healthLevel--;
+		if (thirstLevel > 9 && healthLevel > 0) {
+			healthLevel--;
 		}
-		if (this.boredomLevel < 10) {
-			this.boredomLevel++;
+		if (boredomLevel < 10) {
+			boredomLevel++;
 		}
-		if (this.boredomLevel > 6 && this.happinessLevel > 0) {
-			this.happinessLevel--;
+		if (boredomLevel > 6 && happinessLevel > 0) {
+			happinessLevel--;
 		}
 		this.sleepinessLevel++;
-		if (this.sleepinessLevel > 8) {
+		if (sleepinessLevel > 8) {
 			this.sleep();
 		}
 		if (cageWasteLevel < 10 && !hasBeenWalked) {
 			cageWasteLevel++;
 		}
-		if (cageWasteLevel > 6 && this.happinessLevel > 0) {
+		if (cageWasteLevel > 6 && happinessLevel > 0) {
 			this.happinessLevel--;
 		}
-		if (this.cageWasteLevel > 9 && this.healthLevel > 0) {
-			this.healthLevel--;
+		if (cageWasteLevel > 9 && healthLevel > 0) {
+			healthLevel--;
+		}
+		if (happinessLevel < 3 && healthLevel > 0) {
+			healthLevel--;
 		}
 		hasBeenWalked = false;
 	}
